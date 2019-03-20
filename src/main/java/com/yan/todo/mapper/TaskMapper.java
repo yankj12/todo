@@ -12,9 +12,9 @@ public interface TaskMapper {
 
 	void insertTask(Task task);
 	
-	Task getTaskByPK(Long id);
+	Task findTaskByPK(Long id);
 	
-	List<Task> getTaskListByCondition(Map<String, Object> condition);
+	List<Task> findTaskListByCondition(Map<String, Object> condition);
 	
 	Long countTaskByCondition(Map<String, Object> condition);	
 	
