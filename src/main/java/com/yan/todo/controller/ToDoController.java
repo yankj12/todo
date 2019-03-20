@@ -8,6 +8,6 @@ public class ToDoController {
 	
 	@RequestMapping("/list")
 	public String file() {
-		return "list";
+		return "taskToDo";
 	}
 }

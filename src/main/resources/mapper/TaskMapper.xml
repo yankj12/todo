@@ -4,11 +4,11 @@
     
     <select id="findTaskByPK" parameterType="long" 
         resultType="com.yan.todo.schema.Task">
-        select * from t_task where id=#{id}
+        select * from gtd_task where id=#{id}
     </select>
 	
     <select id="countTaskByCondition" parameterType="java.util.Map" resultType="int">
-    	select count(*) from t_task
+    	select count(*) from gtd_task
     	<trim prefix="where" prefixOverrides="and|or"> 
     		<if test="validStatus != null and validStatus != ''">
     			validStatus=#{validStatus}
@@ -39,7 +39,7 @@
     </select>
     
     <select id="findTaskListByCondition" parameterType="java.util.Map" resultType="com.yan.todo.schema.Task">
-    	select * from t_task
+    	select * from gtd_task
     	<trim prefix="where" prefixOverrides="and|or"> 
     		<if test="validStatus != null and validStatus != ''">
     			validStatus=#{validStatus}
@@ -71,38 +71,38 @@
     </select>
     
     <insert id="insertTask" parameterType="com.yan.todo.schema.Task" useGeneratedKeys="true" keyProperty="id">
-    	insert into t_task 
+    	insert into gtd_task 
     	(title, emergencyFlag, content, userCode, assignTo, deadLine, startTime, endTime, finishFlag, remark, validStatus, insertTime, updateTime) 
     	values 
     	(#{title }, #{emergencyFlag }, #{content }, #{userCode }, #{assignTo}, #{deadLine }, #{startTime }, #{endTime }, #{finishFlag }, #{remark }, #{validStatus }, #{insertTime }, #{updateTime })
     </insert>
 
     <update id="updateTaskByPK" parameterType="com.yan.todo.schema.Task" >
-    	update t_task
+    	update gtd_task
     	set title=#{title}, emergencyFlag=#{emergencyFlag}, content=#{content}, userCode=#{userCode}, assignTo=#{assignTo}, deadLine=#{deadLine }, startTime=#{startTime}, endTime=#{endTime}, finishFlag=#{finishFlag}, remark=#{remark}, validStatus=#{validStatus}, updateTime=#{updateTime} 
     	where id=#{id}
     </update>
       
     <update id="updateTaskValidStatusByPK" parameterType="com.yan.todo.schema.Task" >
-    	update t_task
+    	update gtd_task
 	    	set validStatus=#{validStatus}, updateTime=#{updateTime}
 	    	where id = #{id}
     </update>
     
     <update id="updateTaskFinishFlagByPK" parameterType="com.yan.todo.schema.Task" >
-       	update t_task
+       	update gtd_task
 	    	set finishFlag=#{finishFlag}, updateTime=#{updateTime}
 	    	where id = #{id}
     </update>
     
     <update id="updateTaskEmergencyFlagByPK" parameterType="com.yan.todo.schema.Task" >
-       	update t_task
+       	update gtd_task
     		set emergencyFlag=#{emergencyFlag}, updateTime=#{updateTime}
             where id = #{id}
     </update>
     
     <update id="updateTaskDeadLineByPK" parameterType="com.yan.todo.schema.Task" >
-       	update t_task
+       	update gtd_task
     		set deadLine=#{deadLine}, updateTime=#{updateTime}
             where id = #{id}
     </update>
