@@ -72,14 +72,14 @@
     
     <insert id="insertTask" parameterType="com.yan.todo.schema.Task" useGeneratedKeys="true" keyProperty="id">
     	insert into gtd_task 
-    	(title, emergencyFlag, content, userCode, assignTo, deadLine, startTime, endTime, finishFlag, remark, validStatus, insertTime, updateTime) 
+    	(title, emergencyFlag, content, userCode, assignTo, deadLine, startTimeExpected, endTimeExpected, startTimeActual, endTimeActual, finishFlag, remark, validStatus, insertTime, updateTime) 
     	values 
-    	(#{title }, #{emergencyFlag }, #{content }, #{userCode }, #{assignTo}, #{deadLine }, #{startTime }, #{endTime }, #{finishFlag }, #{remark }, #{validStatus }, #{insertTime }, #{updateTime })
+    	(#{title }, #{emergencyFlag }, #{content }, #{userCode }, #{assignTo}, #{deadLine }, #{startTimeExpected }, #{endTimeExpected }, #{startTimeActual }, #{endTimeActual }, #{finishFlag }, #{remark }, #{validStatus }, #{insertTime }, #{updateTime })
     </insert>
 
     <update id="updateTaskByPK" parameterType="com.yan.todo.schema.Task" >
     	update gtd_task
-    	set title=#{title}, emergencyFlag=#{emergencyFlag}, content=#{content}, userCode=#{userCode}, assignTo=#{assignTo}, deadLine=#{deadLine }, startTime=#{startTime}, endTime=#{endTime}, finishFlag=#{finishFlag}, remark=#{remark}, validStatus=#{validStatus}, updateTime=#{updateTime} 
+    	set title=#{title}, emergencyFlag=#{emergencyFlag}, content=#{content}, userCode=#{userCode}, assignTo=#{assignTo}, deadLine=#{deadLine }, startTimeExpected=#{startTimeExpected}, endTimeExpected=#{endTimeExpected}, startTimeActual=#{startTimeActual}, endTimeActual=#{endTimeActual}, finishFlag=#{finishFlag}, remark=#{remark}, validStatus=#{validStatus}, updateTime=#{updateTime} 
     	where id=#{id}
     </update>
       

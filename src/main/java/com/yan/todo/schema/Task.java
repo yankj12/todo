@@ -3,6 +3,9 @@ package com.yan.todo.schema;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class Task implements Serializable{
     
 	private static final long serialVersionUID = 1L;
@@ -47,12 +50,21 @@ public class Task implements Serializable{
 	/**
 	 * 预期开始时间
 	 */
-	private Date startTime;
+	private Date startTimeExpected;
 
 	/**
 	 * 预期结束时间
 	 */
-	private Date endTime;
+	private Date endTimeExpected;
+	/**
+	 * 实际开始时间
+	 */
+	private Date startTimeActual;
+
+	/**
+	 * 实际结束时间
+	 */
+	private Date endTimeActual;
 
 	/**
 	 * 任务完成标志
@@ -78,117 +90,5 @@ public class Task implements Serializable{
 	 * 修改时间
 	 */
 	private Date updateTime;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getEmergencyFlag() {
-		return emergencyFlag;
-	}
-
-	public void setEmergencyFlag(String emergencyFlag) {
-		this.emergencyFlag = emergencyFlag;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	public Date getDeadLine() {
-		return deadLine;
-	}
-
-	public void setDeadLine(Date deadLine) {
-		this.deadLine = deadLine;
-	}
-
-	public Date getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-
-	public String getFinishFlag() {
-		return finishFlag;
-	}
-
-	public void setFinishFlag(String finishFlag) {
-		this.finishFlag = finishFlag;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public String getValidStatus() {
-		return validStatus;
-	}
-
-	public void setValidStatus(String validStatus) {
-		this.validStatus = validStatus;
-	}
-
-	public Date getInsertTime() {
-		return insertTime;
-	}
-
-	public void setInsertTime(Date insertTime) {
-		this.insertTime = insertTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getAssignTo() {
-		return assignTo;
-	}
-
-	public void setAssignTo(String assignTo) {
-		this.assignTo = assignTo;
-	}
 	
 }
