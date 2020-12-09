@@ -45,10 +45,10 @@
     			validStatus=#{validStatus}
     		</if>
     		<if test="startTime != null">
-    			and startTime&gt;=#{startTime}
+    			and startTimeExpected&gt;=#{startTime}
     		</if>
     		<if test="endTime != null">
-    			and endTime&lt;=#{endTime}
+    			and startTimeExpected&lt;=#{endTime}
     		</if>
     		<if test="userCode != null and userCode != ''">
     			and userCode=#{userCode}
@@ -67,7 +67,8 @@
     			and finishFlag=#{finishFlag}
     		</if>
     	</trim>
-    	
+    	order by updateTime desc
+    	limit #{offset},#{pageSize}
     </select>
     
     <insert id="insertTask" parameterType="com.yan.todo.schema.Task" useGeneratedKeys="true" keyProperty="id">

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.todo.mapper.MeetingMapper">
+    
+    <select id="findMeetingByPK" parameterType="long" 
+        resultType="com.yan.todo.schema.Meeting">
+        select * from gtd_meeting where id=#{id}
+    </select>
+	
+    <select id="countMeetingByCondition" parameterType="java.util.Map" resultType="int">
+    	select count(*) from gtd_meeting
+    	<trim prefix="where" prefixOverrides="and|or">
+    		<if test="id != null and id != ''">
+    			and id like #{id}
+    		</if>
+     		<if test="title != null and title != ''">
+    			<bind name="title" value="'%' + _parameter.title + '%'" />
+    			and title like #{title}
+    		</if>
+    		<if test="meetingDayStartTime != null">
+    			and meetingDay&gt;=#{meetingDayStartTime}
+    		</if>
+    		<if test="meetingDayEndTime != null">
+    			and meetingDay&lt;=#{meetingDayEndTime}
+    		</if>
+    		<if test="projectName != null and projectName != ''">
+    			and projectName=#{projectName}
+    		</if>
+    		<if test="meetingType != null and meetingType != ''">
+    			and meetingType=#{meetingType}
+    		</if>
+    		<if test="validStatus != null and validStatus != ''">
+    			and validStatus=#{validStatus}
+    		</if>
+    		<if test="startTime != null">
+    			and insertTime&gt;=#{startTime}
+    		</if>
+    		<if test="endTime != null">
+    			and insertTime&lt;=#{endTime}
+    		</if>
+    	</trim>
+    </select>
+    
+    <select id="findMeetingListByCondition" parameterType="java.util.Map" resultType="com.yan.todo.schema.Meeting">
+    	select * from gtd_meeting
+    	<trim prefix="where" prefixOverrides="and|or">
+    		<if test="id != null and id != ''">
+    			and id like #{id}
+    		</if>
+     		<if test="title != null and title != ''">
+    			<bind name="title" value="'%' + _parameter.title + '%'" />
+    			and title like #{title}
+    		</if>
+    		<if test="meetingDayStartTime != null">
+    			and meetingDay&gt;=#{meetingDayStartTime}
+    		</if>
+    		<if test="meetingDayEndTime != null">
+    			and meetingDay&lt;=#{meetingDayEndTime}
+    		</if>
+    		<if test="projectName != null and projectName != ''">
+    			and projectName=#{projectName}
+    		</if>
+    		<if test="meetingType != null and meetingType != ''">
+    			and meetingType=#{meetingType}
+    		</if>
+    		<if test="validStatus != null and validStatus != ''">
+    			and validStatus=#{validStatus}
+    		</if>
+    		<if test="startTime != null">
+    			and insertTime&gt;=#{startTime}
+    		</if>
+    		<if test="endTime != null">
+    			and insertTime&lt;=#{endTime}
+    		</if>
+    	</trim>
+    	order by updateTime desc
+    	limit #{offset},#{pageSize}
+    </select>
+    
+    <insert id="insertMeeting" parameterType="com.yan.todo.schema.Meeting" useGeneratedKeys="true" keyProperty="id">
+    	insert into gtd_meeting 
+    	(title, meetingDay, meetingType, projectName, content, remark, validStatus, insertTime, updateTime) 
+    	values 
+    	(#{title }, #{meetingDay }, #{meetingType }, #{projectName }, #{content}, #{remark }, #{validStatus }, #{insertTime }, #{updateTime })
+    </insert>
+
+    <update id="updateMeetingByPK" parameterType="com.yan.todo.schema.Meeting" >
+    	update gtd_meeting
+    	set title=#{title}, meetingDay=#{meetingDay}, content=#{content}, meetingType=#{meetingType}, projectName=#{projectName}, remark=#{remark}, validStatus=#{validStatus}, updateTime=#{updateTime} 
+    	where id=#{id}
+    </update>
+      
+    <update id="updateMeetingValidStatusByPK" parameterType="com.yan.todo.schema.Meeting" >
+    	update gtd_meeting
+	    	set validStatus=#{validStatus}, updateTime=#{updateTime}
+	    	where id = #{id}
+    </update>
+    
+</mapper>
