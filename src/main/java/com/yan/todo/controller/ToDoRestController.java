@@ -5,19 +5,30 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yan.todo.mapper.TaskMapper;
 import com.yan.todo.schema.Task;
+import com.yan.todo.service.TaskService;
 import com.yan.todo.vo.DataGridVo;
+import com.yan.todo.vo.ResponseVo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequestMapping("/api/task")
 @RestController
 public class ToDoRestController {
 	
 	@Autowired
 	private TaskMapper taskMapper;
+	
+	@Autowired
+	public TaskService taskService;
 	
 	@RequestMapping("/taskdatagrid")
 	@ResponseBody
@@ -50,5 +61,20 @@ public class ToDoRestController {
 		dataGrid.setRows(tasks);
 		
 		return dataGrid;
+	}
+	
+	@PostMapping(value = "/saveTask")
+	public ResponseVo saveTask(@RequestBody Task task) {
+		ResponseVo responseVo = new ResponseVo();
+		responseVo.setSuccess(false);
+		try {
+			taskService.saveTask(task);
+			responseVo.setSuccess(true);
+		} catch (Exception e) {
+			log.error("\"保存任务失败，请联系管理员\"", e);
+			responseVo.setSuccess(false);
+			responseVo.setErrorMsg("保存任务失败，请联系管理员");
+		}
+		return responseVo;
 	}
 }
