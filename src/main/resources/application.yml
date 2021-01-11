@@ -70,6 +70,18 @@ spring:
     listener:
       missing-topics-fatal: false  # 消费端监听的topic不存在时，项目启动会报错(关掉)
       #type: batch    # 设置批量消费
+    message:
+      consumer:
+        bootstrap-servers: 192.168.19.129:9092
+        topics: task_message_topic
+        group-id: message01          # 默认消费者组,业务标识,数据库不同时需要避免使用同一个
+        auto-offset-reset: earliest  # latest（从最新的消息开始消费）,earliest（从最老的消息开始消费）,none（如果无offset就抛出异常）
+        fetch-min-size: 1            # 读取消息时最小的Payload的字节数
+        max-poll-records: 2500       # consumer每次批量拉多少条数据。
+        enable-auto-commit: false    # 是否自动提交消费位移
+        auto-commit-interval: 2000
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 # mybatis
 mybatis:
